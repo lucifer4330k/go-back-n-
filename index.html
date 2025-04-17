@@ -1,457 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <title>Go-Back-N ARQ Protocol Simulation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root {
-      --bg: linear-gradient(to bottom right, #5c97f0, #70a4e9);
-      --text: #1a1a1a;
-      --panel: #ffffff;
-      --canvas-bg: #e6e6e6;
-      --log-bg: #f5f5f5;
-      --primary: #1976d2;
-      --accent: #4caf50;
-      --error: #f44336;
-      --shadow: rgba(0, 0, 0, 0.08);
-    }
-
-    body.dark {
-      --bg: linear-gradient(to bottom right, #1a1c1f, #232629, #2c2f33);
-      --text: #eaeaea;
-      --panel: #2a2d30;
-      --canvas-bg: #1f2124;
-      --log-bg: #25272a;
-      --primary: #64b5f6;
-      --accent: #81c784;
-      --error: #e57373;
-      --shadow: rgba(255, 255, 255, 0.05);
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    h2 {
-      text-align: center;
-      margin: 20px 0;
-      font-size: 28px;
-      color: var(--primary);
-      color: blue;
-      font-weight: bold;
-    }
-
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 10;
-    }
-
-    .theme-toggle button {
-      background: var(--panel);
-      color: var(--text);
-      font-size: 18px;
-      padding: 8px 12px;
-      border: 1px solid var(--primary);
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    .theme-toggle button:hover {
-      opacity: 0.85;
-    }
-
-    .main-layout {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 20px;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .left-panel,
-    .right-panel {
-      background: var(--panel);
-      border-radius: 8px;
-      box-shadow: 0 2px 6px var(--shadow);
-      padding: 20px;
-      min-width: 220px;
-      flex: 1;
-      max-width: 280px;
-      transition: background 0.3s ease;
-    }
-
-    .center-panel {
-      flex: 2;
-      min-width: 0;
-      background: var(--panel);
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 8px var(--shadow);
-    }
-
-    label {
-      font-size: 14px;
-      display: block;
-      margin-top: 12px;
-      color: var(--text);
-    }
-
-    input[type="number"],
-    input[type="color"] {
-      width: 100%;
-      padding: 8px;
-      margin-top: 6px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-
-    button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      background: var(--primary);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    .container {
-      overflow-x: auto;
-      overflow-y: hidden;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 1px 4px var(--shadow);
-      width: 100%;
-    }
-
-    canvas {
-      background: var(--canvas-bg);
-      display: block;
-      border-radius: 8px;
-      min-width: 100%;
-    }
-
-    .legend {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-size: 14px;
-      margin-top: 15px;
-      color: var(--text);
-    }
-
-    .legend span {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 1px solid #bbb;
-      margin-right: 6px;
-      border-radius: 4px;
-    }
-
-    #eventLog {
-      max-height: 400px;
-      overflow-y: auto;
-      font-size: 13px;
-      padding: 10px;
-      background: var(--log-bg);
-      border-radius: 6px;
-      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-      color: var(--text);
-    }
-
-    #eventLog strong {
-      color: var(--primary);
-    }
-
-    #eventLog div {
-      margin-bottom: 6px;
-      line-height: 1.4;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go-Back-N Protocol</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <nav class="navbar">
+        <div class="logo">Go-Back-N Protocol</div>
+        <ul class="nav-links">
+            <li class="active"><a href="index.html">Concept</a></li>
+            <li><a href="simulation.html">Simulation</a></li>
+        </ul>
+    </nav>
 
-  <div class="theme-toggle">
-    <button id="themeToggleBtn" onclick="toggleTheme()">🌙</button>
-  </div>
+    <main class="concept-container">
+        <h1>Go-Back-N Protocol Concept</h1>
+        
+        <section class="concept-section">
+            <h2>What is Go-Back-N Protocol?</h2>
+            <p>
+                Go-Back-N is a sliding window protocol that belongs to Automatic Repeat reQuest (ARQ) protocols used in data link and transport layers for reliable data transmission.
+            </p>
+            <p>
+                In Go-Back-N, the sender can transmit multiple frames before receiving an acknowledgment, but is constrained to have no more than a maximum number of frames (the window size) outstanding.
+            </p>
+        </section>
 
-  <h2>Go-Back-N ARQ Protocol Simulation</h2>
+        <section class="concept-section">
+            <h2>Key Characteristics</h2>
+            <ul>
+                <li><strong>Window Size:</strong> Defines the maximum number of frames that can be sent without receiving an acknowledgment</li>
+                <li><strong>Sequence Numbers:</strong> Frames are numbered to maintain order and track acknowledgments</li>
+                <li><strong>Cumulative Acknowledgment:</strong> A single ACK confirms all frames up to a specific sequence number</li>
+                <li><strong>Timeout Mechanism:</strong> If an acknowledgment is not received within a specified timeout period, all unacknowledged frames are retransmitted</li>
+            </ul>
+        </section>
 
-  <div class="main-layout">
-    <div class="left-panel">
-      <label>Number of Packets: <input type="number" id="packetCount" value="10" min="1" max="50"></label>
-      <label>Window Size: <input type="number" id="windowSize" value="4" min="1" max="10"></label>
-      <button onclick="startAnimation(false)">Start (No Loss)</button>
-      <button onclick="startAnimation(true)">Start (With Loss)</button>
-      <button id="pauseResumeBtn" onclick="togglePauseResume()">Pause</button>
-      <button onclick="resetAnimation()">Reset</button>
-      <button onclick="stepThrough()">Next Step</button>
-      <label>Unsent Color: <input type="color" id="unsentColor" value="#808080"
-          onchange="updateColor('unsent')"></label>
-      <label>Sent Color: <input type="color" id="sentColor" value="#42a5f5" onchange="updateColor('sent')"></label>
-      <label>ACK Color: <input type="color" id="ackedColor" value="#66bb6a" onchange="updateColor('acked')"></label>
-      <label>Lost Color: <input type="color" id="lostColor" value="#ef5350" onchange="updateColor('lost')"></label>
-    </div>
+        <section class="concept-section">
+            <h2>How Go-Back-N Works</h2>
+            <h3>Sender's Perspective:</h3>
+            <ol>
+                <li>Maintains a window of up to N unacknowledged frames</li>
+                <li>Continues sending frames until the window is full</li>
+                <li>When an acknowledgment is received, the window slides forward</li>
+                <li>If a timeout occurs before receiving an ACK, the sender retransmits all frames in the current window</li>
+            </ol>
 
-    <div class="center-panel">
-      <div class="container">
-        <canvas id="gbnCanvas" height="400"></canvas>
-      </div>
-      <div class="legend">
-        <div><span id="unsentLegend" style="background-color: #808080;"></span> Unsent</div>
-        <div><span id="sentLegend" style="background-color: #42a5f5;"></span> Sent</div>
-        <div><span id="ackedLegend" style="background-color: #66bb6a;"></span> ACK</div>
-        <div><span id="lostLegend" style="background-color: #ef5350;"></span> Lost</div>
-      </div>
-    </div>
+            <h3>Receiver's Perspective:</h3>
+            <ol>
+                <li>Accepts only frames arriving in exact sequence order</li>
+                <li>Discards out-of-order frames without buffering them</li>
+                <li>Sends acknowledgment for the highest in-sequence frame received</li>
+            </ol>
+        </section>
 
-    <div class="right-panel">
-      <div id="eventLog"><strong>Event Log:</strong></div>
-      <button onclick="downloadLogPDF()">Download Log as PDF</button>
-    </div>
-  </div>
+        <section class="concept-section">
+            <h2>Advantages and Disadvantages</h2>
+            <h3>Advantages:</h3>
+            <ul>
+                <li>Simple implementation, especially at the receiver</li>
+                <li>Efficient for low error rates</li>
+                <li>Better channel utilization compared to Stop-and-Wait</li>
+            </ul>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script>
-    const canvas = document.getElementById("gbnCanvas");
-    const ctx = canvas.getContext("2d");
-    let TOTAL_PACKETS = 10;
-    let WINDOW_SIZE = 4;
-    let base = 0, nextSeqNum = 0;
-    let packetStatus = [];
-    let animationRunning = false;
-    let speed = 1000;
-    let animationTimer;
-    let allowPacketLoss = false;
-    let packetWidth = 80;
-    let packetHeight = 40;
-    let senderY = 100, receiverY = 300;
+            <h3>Disadvantages:</h3>
+            <ul>
+                <li>Wasteful when errors occur, as correctly received frames may be retransmitted</li>
+                <li>Not efficient in high error rate environments</li>
+                <li>Can lead to unnecessary retransmissions when only one frame is corrupted</li>
+            </ul>
+        </section>
 
-    let packetColors = {
-      unsent: "#808080",
-      sent: "#42a5f5",
-      acked: "#66bb6a",
-      lost: "#ef5350"
-    };
+        <section class="concept-section">
+            <h2>Try the Simulation</h2>
+            <p>
+                To better understand how Go-Back-N works in practice, try our interactive
+                <a href="simulation.html" class="sim-button">Simulation</a>
+            </p>
+        </section>
+    </main>
 
-    function initializePackets() {
-      TOTAL_PACKETS = parseInt(document.getElementById("packetCount").value);
-      WINDOW_SIZE = parseInt(document.getElementById("windowSize").value);
-      base = 0;
-      nextSeqNum = 0;
-      packetStatus = Array(TOTAL_PACKETS).fill("unsent");
-
-      canvas.width = Math.max(800, 120 + TOTAL_PACKETS * packetWidth);
-      drawPackets();
-    }
-
-    function drawPackets() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.font = "14px Arial";
-      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--text');
-      ctx.fillText("Sender", 20, senderY + 20);
-      ctx.fillText("Receiver", 20, receiverY + 20);
-
-      for (let i = 0; i < TOTAL_PACKETS; i++) {
-        let x = 100 + i * packetWidth;
-
-        // Draw packet at sender
-        ctx.fillStyle = packetColors[packetStatus[i]];
-        ctx.fillRect(x, senderY, packetWidth - 10, packetHeight);
-        ctx.strokeRect(x, senderY, packetWidth - 10, packetHeight);
-        ctx.fillStyle = "#000";
-        ctx.fillText("Pkt " + i, x + 15, senderY + 25);
-
-        // Draw arrow to receiver if sent/lost
-        if (packetStatus[i] === "sent" || packetStatus[i] === "lost") {
-          drawArrow(x + 25, senderY + packetHeight, x + 25, receiverY - 5, packetStatus[i] === "lost");
-        }
-
-        // Draw ACK + arrow back to sender
-        if (packetStatus[i] === "acked") {
-          ctx.fillStyle = packetColors.acked;
-          ctx.fillRect(x, receiverY, packetWidth - 10, packetHeight);
-          ctx.strokeRect(x, receiverY, packetWidth - 10, packetHeight);
-          ctx.fillStyle = "#000";
-          ctx.fillText("ACK " + i, x + 10, receiverY + 25);
-
-          // Arrow for ACK
-          drawArrow(x + 45, receiverY, x + 45, senderY + packetHeight + 5, false, true);
-        }
-      }
-
-      // Draw window
-      ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--primary');
-      ctx.lineWidth = 2;
-      ctx.strokeRect(100 + base * packetWidth - 5, senderY - 5, packetWidth * WINDOW_SIZE, packetHeight + 10);
-    }
-
-
-    function drawArrow(fromX, fromY, toX, toY, isLost = false, isAck = false) {
-      const headlen = 10;
-      const dx = toX - fromX;
-      const dy = toY - fromY;
-      const angle = Math.atan2(dy, dx);
-
-      ctx.beginPath();
-      ctx.moveTo(fromX, fromY);
-      ctx.lineTo(toX, toY);
-
-      if (isLost) {
-        ctx.strokeStyle = packetColors.lost;
-        ctx.setLineDash([5, 5]);
-      } else if (isAck) {
-        ctx.strokeStyle = packetColors.acked;
-        ctx.setLineDash([]);
-      } else {
-        ctx.strokeStyle = packetColors.sent;
-        ctx.setLineDash([]);
-      }
-
-      ctx.stroke();
-
-      // Arrowhead
-      ctx.beginPath();
-      ctx.moveTo(toX, toY);
-      ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
-      ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
-      ctx.lineTo(toX, toY);
-      ctx.fillStyle = ctx.strokeStyle;
-      ctx.fill();
-
-      ctx.setLineDash([]);
-    }
-
-
-    function updateColor(status) {
-      const val = document.getElementById(status + "Color").value;
-      packetColors[status] = val;
-      document.getElementById(status + "Legend").style.backgroundColor = val;
-      drawPackets();
-    }
-
-    function updateEventLog(msg) {
-      const log = document.getElementById("eventLog");
-      const entry = document.createElement("div");
-      entry.innerHTML = new Date().toLocaleTimeString() + " - " + msg;
-      log.appendChild(entry);
-      log.scrollTop = log.scrollHeight;
-    }
-
-    function sendPacket() {
-      if (!animationRunning) return;
-      while (nextSeqNum < base + WINDOW_SIZE && nextSeqNum < TOTAL_PACKETS) {
-        packetStatus[nextSeqNum] = allowPacketLoss && Math.random() < 0.2 ? "lost" : "sent";
-        updateEventLog("Packet " + nextSeqNum + " " + (packetStatus[nextSeqNum] === "lost" ? "lost ❌" : "sent ✅"));
-        nextSeqNum++;
-      }
-      drawPackets();
-      animationTimer = setTimeout(receiveAck, speed);
-    }
-
-    function receiveAck() {
-      if (!animationRunning) return;
-      if (packetStatus[base] === "lost") {
-        updateEventLog("⚠️ Packet loss detected. Resending from Packet " + base);
-        for (let i = base; i < nextSeqNum; i++) {
-          packetStatus[i] = allowPacketLoss && Math.random() < 0.2 ? "lost" : "sent";
-          updateEventLog("Retransmitting Packet " + i + " " + (packetStatus[i] === "lost" ? "❌ lost again" : "✅ success"));
-        }
-      } else if (packetStatus[base] === "sent") {
-        packetStatus[base] = "acked";
-        updateEventLog("✅ Packet " + base + " acknowledged");
-        base++;
-        if (nextSeqNum < base + WINDOW_SIZE && nextSeqNum < TOTAL_PACKETS) {
-          packetStatus[nextSeqNum] = allowPacketLoss && Math.random() < 0.2 ? "lost" : "sent";
-          updateEventLog("Packet " + nextSeqNum + " " + (packetStatus[nextSeqNum] === "lost" ? "lost ❌" : "sent ✅"));
-          nextSeqNum++;
-        }
-      }
-      drawPackets();
-      if (base >= TOTAL_PACKETS) {
-        updateEventLog("🎉 All packets acknowledged.");
-        animationRunning = false;
-        return;
-      }
-      animationTimer = setTimeout(receiveAck, speed);
-    }
-
-    function startAnimation(withLoss) {
-      allowPacketLoss = withLoss;
-      resetAnimation();
-      animationRunning = true;
-      sendPacket();
-    }
-
-    function stepThrough() {
-      if (!animationRunning) return;
-      receiveAck();
-    }
-
-    function togglePauseResume() {
-      const btn = document.getElementById("pauseResumeBtn");
-      if (animationRunning) {
-        clearTimeout(animationTimer);
-        animationRunning = false;
-        btn.textContent = "Resume";
-        updateEventLog("⏸️ Simulation paused");
-      } else {
-        animationRunning = true;
-        btn.textContent = "Pause";
-        updateEventLog("▶️ Simulation resumed");
-        animationTimer = setTimeout(receiveAck, speed);
-      }
-    }
-
-
-    function resetAnimation() {
-      clearTimeout(animationTimer);
-      document.getElementById("eventLog").innerHTML = "<strong>Event Log:</strong>";
-      initializePackets();
-      animationRunning = false;
-      document.getElementById("pauseResumeBtn").textContent = "Pause";
-    }
-
-
-    async function downloadLogPDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      const logText = document.getElementById("eventLog").innerText;
-      const lines = doc.splitTextToSize(logText, 180);
-      doc.text(lines, 15, 20);
-      doc.save("gbn_event_log.pdf");
-    }
-
-    function toggleTheme() {
-      const body = document.body;
-      body.classList.toggle("dark");
-      const themeBtn = document.getElementById("themeToggleBtn");
-      themeBtn.textContent = body.classList.contains("dark") ? "🌞" : "🌙";
-      drawPackets();
-    }
-
-    window.onload = initializePackets;
-  </script>
-
+    <footer>
+        <p>&copy; 2023 Go-Back-N Protocol Simulation</p>
+    </footer>
 </body>
-</html>
+</html> 
